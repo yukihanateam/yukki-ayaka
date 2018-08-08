@@ -38,7 +38,7 @@ bot.on("message", async message => {
 		  .setDescription("pusat bantuan bot yukihana team")
 		  .setFooter("yukihana team © 2018", logo)
 		  .setThumbnail(logo)
-		  .addField("yukihana team information","gunakan ```>``` untuk menggunakan fitur dari bot ini")
+		  .addField("yukihana team information","gunakan ``>`` untuk menggunakan fitur dari bot ini")
 		  .addField("member","menampilkan daftar member yukihana team \n```(command ini bersifat spam mohon di gunakan di channel khusus)```")
 		  .addField("admin","menampilkan daftar admin yukihana team \n```fitur ini masih dalam proses```")
 		  .addField("testing","menampilkan daftar testing member yukihana team \n```fitur ini masih dalam proses``` \n \n")
@@ -68,7 +68,7 @@ bot.on("message", async message => {
 			  message.channel.send({embed});
 		}
 	}
-	else if (msg === config.prefix + "ADMIN") //command member
+	else if (msg === config.prefix + "ADMIN") //command admin
 	{
 		//membuat konstanta
 		const member = require('./data.json');
@@ -86,6 +86,50 @@ bot.on("message", async message => {
 			  .setURL(member_url)
 			  .addField(member.admin[i].nickname + "\nstatus di team : " + member.admin[i].status + "\nkondisi : " + member.admin[i].kondisi ,
 			    "[youtube](" + member.admin[i].youtube + ") \n [facebook](" + member.admin[i].facebook + ") \n [instagram](" + member.admin[i].instagram + ")")
+
+			  message.channel.send({embed});
+		}
+	}
+	else if (msg === config.prefix + "STAFF") //command staff
+	{
+		//membuat konstanta
+		const member = require('./data.json');
+		const member_url = "https://www.youtube.com/channel/UCjNqQcxR4IOOvx-GSgHxj8A/channels?shelf_id=4&view=49";
+
+		//perulangan
+		for(var i = 0; i < member.staff.length; i++)
+		{
+			const embed = new Discord.RichEmbed()
+			  .setTitle("yukihana team member")
+			  .setColor('random')
+			  .setDescription("member tercinta yukihana team yang ayaka cintai")
+			  .setFooter("yukihana team © 2018", logo)
+			  .setThumbnail(member.staff[i].picture)
+			  .setURL(member_url)
+			  .addField(member.staff[i].nickname + "\nstatus di team : " + member.staff[i].status + "\nkondisi : " + member.staff[i].kondisi ,
+			    "[youtube](" + member.staff[i].youtube + ") \n [facebook](" + member.staff[i].facebook + ") \n [instagram](" + member.staff[i].instagram + ")")
+
+			  message.channel.send({embed});
+		}
+	}
+	else if (msg === config.prefix + "OFFICIAL") //command staff
+	{
+		//membuat konstanta
+		const member = require('./data.json');
+		const member_url = "https://www.youtube.com/channel/UCjNqQcxR4IOOvx-GSgHxj8A/channels?shelf_id=4&view=49";
+
+		//perulangan
+		for(var i = 0; i < member.official.length; i++)
+		{
+			const embed = new Discord.RichEmbed()
+			  .setTitle("yukihana team member")
+			  .setColor('random')
+			  .setDescription("daftar official akun yukihana team, jangan sampe salah ya kak")
+			  .setFooter("yukihana team © 2018", logo)
+			  .setThumbnail(member.official[i].picture)
+			  .setURL(member_url)
+			  .addField("daftar official akun yukihana team",
+			    "[youtube](" + member.official[i].youtube + ") \n [facebook-official](" + member.official[i].facebook + ") \n [facebook-shitposting](" + member.official[i].instagram + ") \n [bilibili](" + member.official[i].bilibili + ") \n [yuki comic-coming soon](#) \n [yuki news-coming soon](#)")
 
 			  message.channel.send({embed});
 		}
